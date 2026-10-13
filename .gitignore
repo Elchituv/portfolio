@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# Data and generated outputs (datasets are not redistributed)
+*.csv
+*.db
+*.sqlite
+coffee_sign_charts.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

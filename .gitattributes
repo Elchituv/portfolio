@@ -1,0 +1,2 @@
+# Show the repo language as Python (notebooks are counted but not used for detection)
+*.ipynb linguist-detectable=false

@@ -1,19 +1,16 @@
 # Elchanan Achituv — Data Portfolio
 
-**Data Analyst · BI Developer · AI Builder** | Engineer with 4+ years of biomedical data analysis
+**Process Engineer → Data Analyst · BI Developer · AI Builder** | 4+ years of biomedical data analysis
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Elchanan%20Achituv-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/elchanan-achituv-data-driven/)
 [![GitHub](https://img.shields.io/badge/GitHub-Elchituv-181717?logo=github&logoColor=white)](https://github.com/Elchituv)
 ![Location](https://img.shields.io/badge/Location-Israel-555555)
-<!-- To show a Resume badge: upload your CV to Resume/Elchanan_Achituv_CV.pdf, then delete the first and last lines of this comment block.
-[![Resume](https://img.shields.io/badge/Resume-PDF-D32F2F?logo=adobeacrobatreader&logoColor=white)](Resume/Elchanan_Achituv_CV.pdf)
--->
 
 ---
 
 ## About me
 
-I'm an engineer who moved into data through the lab. For over four years at **MD Biosciences Neuro**, a preclinical CRO, I analysed biological data and helped design in-vitro and in-vivo experiments — statistics in Prism and Python, image processing in ImageJ and Deep Pathology, and automated brain-lesion mapping that replaced manual annotation. I co-authored a peer-reviewed electrophysiology study published in *The Journal of Pain* (2024).
+I'm a process engineer who moved into data through the lab. For over four years at **MD Biosciences Neuro**, a preclinical CRO, I analysed biological data and helped design in-vitro and in-vivo experiments — statistics in Prism and Python, image processing in ImageJ and Deep Pathology, and automated brain-lesion mapping that replaced manual annotation. I co-authored a peer-reviewed electrophysiology study published in *The Journal of Pain* (2024).
 
 Before that I worked in **GMP quality and product release** at Omrix Biopharmaceuticals and in **R&D** at Daika, with additional training in control and automation (PLC, Arduino). In 2025 I completed the **Biomedical Data Analyst** program (Association of Engineers and Architects in Israel, the Hebrew University and the Israel Innovation Authority).
 
@@ -29,7 +26,7 @@ I'm open to work in three directions — one folder of this portfolio for each �
 | **[BI Developer](BI%20Developer/)** | Power BI dashboards, data modelling and KPI design that let business users answer their own questions |
 | **[AI Builder](AI%20Builder/)** | AI-powered automations (n8n, Make, Zapier) and LLM workflows that take repetitive work off people's plates |
 
-More about me on my [GitHub profile](https://github.com/Elchituv) and [LinkedIn](https://www.linkedin.com/in/elchanan-achituv-data-driven/).
+Let's connect on [LinkedIn](https://www.linkedin.com/in/elchanan-achituv-data-driven/).
 
 ---
 
@@ -39,19 +36,19 @@ More about me on my [GitHub profile](https://github.com/Elchituv) and [LinkedIn]
 portfolio/
 ├── AI Builder/       → AI automations, LLM pipelines, agents   (coming soon)
 ├── BI Developer/     → Power BI dashboards and data models     (coming soon)
-└── Data Analyst/
-    └── FP&A/         → completed projects (below)
+└── Data Analyst/     → analysis projects: experiments, data-quality audits
+    └── FP&A/         → finance projects: cost of credit, revenue, promotions
 ```
 
 ## Featured projects
 
 | Project | Question | Stack | Result |
 |---|---|---|---|
-| [Coffee Cart Conversion](Data%20Analyst/FP%26A/Coffee-Cart-AB-Test/) | Did a cheerful sign sell more coffee? | Python · statsmodels | +10.5 pp conversion, p < 0.001, ≈ $42 extra revenue/day |
+| [Coffee Cart Conversion](Data%20Analyst/Coffee-Cart-AB-Test/) | Did a cheerful sign sell more coffee? | Python · statsmodels | +10.5 pp conversion, p < 0.001, ≈ $42 extra revenue/day |
 | [Grocery Basket Analysis](Data%20Analyst/FP%26A/Grocery-Basket-Analysis/) | Which products should be bundled, and for whom? | Python · pandas | Lift-based bundles, RFM segments, promo evaluation |
 | [Loan Amortization Calculator](Data%20Analyst/FP%26A/Loan-Amortization-Calculator/) | What does a loan — and its grace period — really cost? | Python · SQLite | Full Spitzer schedules stored and summarised in SQL |
-| [VetNet Data Quality Audit](Data%20Analyst/FP%26A/VetNet-Data-Quality-Audit/) | Can a merged four-clinic database be trusted? | PostgreSQL | Generic column profiling + audit framework |
-| [Colony Arrival Logs Audit](Data%20Analyst/FP%26A/Colony-Arrival-Logs-Audit/) | Are there impossible records in a registry? | PostgreSQL | 19 / 503 anomalies found, schema constraint added |
+| [VetNet Data Quality Audit](Data%20Analyst/VetNet-Data-Quality-Audit/) | Can a merged four-clinic database be trusted? | PostgreSQL | Generic column profiling + audit framework |
+| [Colony Arrival Logs Audit](Data%20Analyst/Colony-Arrival-Logs-Audit/) | Are there impossible records in a registry? | PostgreSQL | 19 / 503 anomalies found, schema constraint added |
 
 ## How every project is documented
 

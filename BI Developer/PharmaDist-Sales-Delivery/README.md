@@ -6,6 +6,8 @@
 ![SQL](https://img.shields.io/badge/SQL-DuckDB-FFF000?logo=duckdb&logoColor=black)
 ![Topic](https://img.shields.io/badge/Topic-Supply%20Chain%20%C2%B7%20Pharma-2E7D32)
 
+![Dashboard](Dashboard.png)
+
 ---
 
 ## The business question
@@ -101,6 +103,7 @@ The first trend chart used two Y axes with different scales, which made the two 
 | `sql/control_numbers.sql`         | Data-quality profile and control numbers for every KPI        |
 | `data_generator/generate_data.py` | Synthetic data generator (Python, pandas)                     |
 | `teaching/`                       | The project as a lesson: lesson plan, exercise and answer key |
+| `Dashboard.png`                   | Screenshot of the report                                      |
 
 **Tools:** Power BI (Power Query, DAX) · SQL (DuckDB) · Python (pandas). The data generator, SQL checks and teaching materials were developed with GenAI (Claude). The model, measures and report were built and validated in Power BI.
 

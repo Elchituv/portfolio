@@ -10,8 +10,10 @@ Dashboards and data models that let business users answer their own questions �
 
 ## Projects
 
-🚧 *Coming soon — projects will be added here as they are completed.*
+| Project                                                                 | Question                                                                                          | Tools                              |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| [PharmaDist — Sales & Delivery Performance](PharmaDist-Sales-Delivery/) | Sales are growing, but is service keeping up? Where do orders arrive late or incomplete, and why? | Power BI · Power Query · DAX · SQL |
 
-Each project will follow the same structure as the rest of this portfolio: the problem, the data, the solution process, results, and lessons learned.
+Each project follows the same structure as the rest of this portfolio: the problem, the data, the solution process, results, and lessons learned.
 
 [← Portfolio home](../README.md)

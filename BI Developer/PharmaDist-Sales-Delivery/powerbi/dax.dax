@@ -1,0 +1,78 @@
+// =====================================================================
+// PharmaDist - DAX (calculated tables and measures)
+// Model: FACT_Sales (order-line grain) + DIM_Customer, DIM_Product, DIM_Date
+// =====================================================================
+
+// ---------------------------------------------------------------------
+// DIM_Date - calendar table
+// Starts at the first order and ends at the last order / delivery date
+// (30/09/2026 = ERP extract date). Ending at the extract date keeps the
+// year-over-year comparison like-for-like: Jan-Sep 2026 vs Jan-Sep 2025.
+// After creating: Sort "Month Name" by "Month", Mark as date table.
+// Relationships: DIM_Date[Date] -> FACT_Sales[OrderDate]          (active)
+//                DIM_Date[Date] -> FACT_Sales[ActualDeliveryDate] (inactive)
+// ---------------------------------------------------------------------
+DIM_Date =
+ADDCOLUMNS(
+    CALENDAR(
+        MIN(FACT_Sales[OrderDate]),
+        MAX(MAX(FACT_Sales[OrderDate]), MAX(FACT_Sales[ActualDeliveryDate]))
+    ),
+    "Year", YEAR([Date]),
+    "Quarter", "Q" & QUARTER([Date]),
+    "Month", MONTH([Date]),
+    "Month Name", FORMAT([Date], "MMM"),
+    "Year-Month", FORMAT([Date], "YYYY-MM"),
+    "Day Name", FORMAT([Date], "DDDD")
+)
+
+// =====================================================================
+// MEASURES
+// Time-intelligence pattern: TOTALYTD + DATEADD (same as the course).
+// =====================================================================
+
+// --- Sales -----------------------------------------------------------
+Total Sales = SUM(FACT_Sales[NetAmount])
+
+Gross Profit =
+SUMX(
+    FACT_Sales,
+    FACT_Sales[NetAmount] - FACT_Sales[QtyDelivered] * RELATED(DIM_Product[StandardCost])
+)
+
+Gross Margin % = DIVIDE([Gross Profit], [Total Sales])
+
+Orders = CALCULATE(DISTINCTCOUNT(FACT_Sales[OrderID]), FACT_Sales[OrderStatus] = "Delivered")
+
+// --- Time intelligence -----------------------------------------------
+Year to Date = TOTALYTD([Total Sales], DIM_Date[Date])
+
+Sales previous year = CALCULATE([Year to Date], DATEADD(DIM_Date[Date], -1, YEAR))
+
+Sales YoY% = DIVIDE([Year to Date] - [Sales previous year], [Sales previous year])
+
+// --- Delivery performance (order level) ------------------------------
+// Iterate delivered orders; CALCULATE turns each OrderID into a filter
+// (context transition). An order is in full only if MIN over its lines = 1.
+On-Time % =
+AVERAGEX(
+    CALCULATETABLE(VALUES(FACT_Sales[OrderID]), FACT_Sales[OrderStatus] = "Delivered"),
+    CALCULATE(MIN(FACT_Sales[OnTime]))
+)
+
+In-Full % =
+AVERAGEX(
+    CALCULATETABLE(VALUES(FACT_Sales[OrderID]), FACT_Sales[OrderStatus] = "Delivered"),
+    CALCULATE(MIN(FACT_Sales[LineInFull]))
+)
+
+OTIF % =
+AVERAGEX(
+    CALCULATETABLE(VALUES(FACT_Sales[OrderID]), FACT_Sales[OrderStatus] = "Delivered"),
+    CALCULATE(MIN(FACT_Sales[OnTime]) * MIN(FACT_Sales[LineInFull]))
+)
+
+// --- Inactive relationship -------------------------------------------
+// Sales by the date goods were delivered instead of the order date.
+Sales by Delivery Date =
+CALCULATE([Total Sales], USERELATIONSHIP(DIM_Date[Date], FACT_Sales[ActualDeliveryDate]))

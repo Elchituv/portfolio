@@ -1,0 +1,141 @@
+CustomerID,CustomerName,CustomerType,City,Region
+C1001,Ofek Medical Center - Haifa,Hospital,Haifa,North
+C1002,Rimon Medical Center - Nazareth,Hospital,Nazareth,North
+C1003,Tavor Medical Center - Afula,Hospital,Afula,North
+C1004,Dekel Medical Center - Tiberias,Hospital,Tiberias,North
+C1005,Shaked Medical Center - Netanya,Hospital,Netanya,Sharon
+C1006,Narkis Medical Center - Hadera,Hospital,Hadera,Sharon
+C1007,Alon Medical Center - Tel Aviv,Hospital,Tel Aviv,Center
+C1008,Gefen Medical Center - Petah Tikva,Hospital,Petah Tikva, center  
+C1009,Erez Medical Center - Rehovot,Hospital,Rehovot,Center
+C1010,Hadas Medical Center - Jerusalem,Hospital,Jerusalem,Jerusalem
+C1011,Yarden Medical Center - Jerusalem,Hospital,Jerusalem,Jerusalem
+C1012,Brosh Medical Center - Beer Sheva,Hospital,  beer sheva,South
+C1013,Arava Medical Center - Ashkelon,Hospital,Ashkelon,South
+C1014,Kinneret Medical Center - Eilat,Hospital,Eilat,South
+C1015,Briut Plus HMO - North District,HMO,Haifa,North
+C1016,Briut Plus HMO - Center District,HMO,Tel Aviv,Center
+C1017,Briut Plus HMO - Jerusalem District,HMO,  jerusalem,Jerusalem
+C1018,Briut Plus HMO - South District,HMO,Beer Sheva,South
+C1019,Shefa HMO - North District,HMO,Haifa,North
+C1020,Shefa HMO - Center District,HMO,Tel Aviv, center  
+C1021,Shefa HMO - Jerusalem District,HMO,Jerusalem,JERUSALEM
+C1022,Shefa HMO - South District,HMO,Beer Sheva,South
+C1023,PharmaNet #101 Holon,Pharmacy Chain,Holon,center
+C1024,PharmaNet #102 Tiberias,Pharmacy Chain,Tiberias,North
+C1025,PharmaNet #103 Tiberias,Pharmacy Chain,Tiberias,North
+C1026,PharmaNet #104 Petah Tikva,Pharmacy Chain,Petah Tikva,Center
+C1027,PharmaNet #105 Beit Shemesh,Pharmacy Chain,Beit Shemesh,Jerusalem
+C1028,PharmaNet #106 Rishon LeZion,Pharmacy Chain,Rishon LeZion,Center 
+C1029,PharmaNet #107 Kfar Saba,Pharmacy Chain,Kfar Saba,sharon
+C1030,PharmaNet #108 Jerusalem,Pharmacy Chain,Jerusalem,Jerusalem
+C1031,PharmaNet #109 Tiberias,Pharmacy Chain,Tiberias,North
+C1032,PharmaNet #110 Ashdod,Pharmacy Chain,Ashdod,SOUTH
+C1033,PharmaNet #111 Eilat,Pharmacy Chain,Eilat,South
+C1034,PharmaNet #112 Netanya,Pharmacy Chain,Netanya,Sharon 
+C1035,PharmaNet #113 Beer Sheva,Pharmacy Chain,Beer Sheva,South
+C1036,PharmaNet #114 Jerusalem,Pharmacy Chain,Jerusalem,Jerusalem
+C1037,PharmaNet #115 Herzliya,Pharmacy Chain,  herzliya,Sharon
+C1038,PharmaNet #116 Kfar Saba,Pharmacy Chain,  kfar saba,Sharon
+C1039,PharmaNet #117 Rishon LeZion,Pharmacy Chain,  rishon lezion,Center
+C1040,PharmaNet #118 Beit Shemesh,Pharmacy Chain,Beit Shemesh,Jerusalem
+C1041,PharmaNet #119 Haifa,Pharmacy Chain,Haifa,North
+C1042,PharmaNet #120 Haifa,Pharmacy Chain,Haifa,North
+C1043,PharmaNet #121 Holon,Pharmacy Chain,Holon, center  
+C1044,PharmaNet #122 Haifa,Pharmacy Chain,Haifa,North 
+C1045,PharmaNet #123 Eilat,Pharmacy Chain,Eilat,SOUTH
+C1046,PharmaNet #124 Kfar Saba,Pharmacy Chain,Kfar Saba,Sharon
+C1047,PharmaNet #125 Karmiel,Pharmacy Chain,Karmiel,North
+C1048,PharmaNet #126 Rehovot,Pharmacy Chain,Rehovot,Center
+C1049,PharmaNet #127 Ashdod,Pharmacy Chain,Ashdod,SOUTH
+C1050,PharmaNet #128 Tel Aviv,Pharmacy Chain,Tel Aviv,Center
+C1051,PharmaNet #129 Beer Sheva,Pharmacy Chain,Beer Sheva,south
+C1052,PharmaNet #130 Hadera,Pharmacy Chain,Hadera,Sharon
+C1053,CarePoint Pharmacy #131 Karmiel,Pharmacy Chain,Karmiel,North
+C1054,CarePoint Pharmacy #132 Rehovot,Pharmacy Chain,  rehovot,Center
+C1055,CarePoint Pharmacy #133 Rishon LeZion,Pharmacy Chain,Rishon LeZion,Center
+C1056,CarePoint Pharmacy #134 Netanya,Pharmacy Chain,Netanya,Sharon
+C1057,CarePoint Pharmacy #135 Jerusalem,Pharmacy Chain,Jerusalem,Jerusalem
+C1058,CarePoint Pharmacy #136 Hadera,Pharmacy Chain,Hadera,Sharon
+C1059,CarePoint Pharmacy #137 Haifa,Pharmacy Chain,Haifa,North 
+C1060,CarePoint Pharmacy #138 Afula,Pharmacy Chain,Afula,North
+C1061,CarePoint Pharmacy #139 Tel Aviv,Pharmacy Chain,Tel Aviv,Center
+C1062,CarePoint Pharmacy #140 Rehovot,Pharmacy Chain,Rehovot,Center
+C1063,CarePoint Pharmacy #141 Modiin,Pharmacy Chain,Modiin,Jerusalem
+C1064,CarePoint Pharmacy #142 Ashkelon,Pharmacy Chain,Ashkelon,south
+C1065,CarePoint Pharmacy #143 Jerusalem,Pharmacy Chain,Jerusalem,Jerusalem
+C1066,CarePoint Pharmacy #144 Nazareth,Pharmacy Chain,Nazareth,North
+C1067,CarePoint Pharmacy #145 Tel Aviv,Pharmacy Chain,Tel Aviv,Center
+C1068,CarePoint Pharmacy #146 Ashkelon,Pharmacy Chain,Ashkelon,South
+C1069,Rosen Pharmacy - Jerusalem,Independent Pharmacy,Jerusalem,Jerusalem
+C1070,Haddad Pharmacy - Rehovot,Independent Pharmacy,Rehovot,center
+C1071,Gabay Pharmacy - Hadera,Independent Pharmacy,Hadera,Sharon
+C1072,Amar Pharmacy - Tel Aviv,Independent Pharmacy,Tel Aviv,Center
+C1073,Cohen Pharmacy - Tel Aviv,Independent Pharmacy,Tel Aviv,Center
+C1074,Klein Pharmacy - Netanya,Independent Pharmacy,Netanya,Sharon
+C1075,Ohana Pharmacy - Hadera,Independent Pharmacy,Hadera,Sharon
+C1076,Segal Pharmacy - Hadera,Independent Pharmacy,Hadera,Sharon
+C1077,Nachum Pharmacy - Rishon LeZion,Independent Pharmacy,Rishon LeZion,Center
+C1078,Katz Pharmacy - Haifa,Independent Pharmacy,Haifa,North
+C1079,Azoulay Pharmacy - Jerusalem,Independent Pharmacy,  jerusalem,Jerusalem
+C1080,Tal Pharmacy - Petah Tikva,Independent Pharmacy,Petah Tikva,Center
+C1081,Katz Pharmacy - Eilat,Independent Pharmacy,Eilat,south
+C1082,Rosen Pharmacy - Raanana,Independent Pharmacy,Raanana,Sharon
+C1083,Sasson Pharmacy - Modiin,Independent Pharmacy,Modiin,Jerusalem
+C1084,Katz Pharmacy - Tel Aviv,Independent Pharmacy,Tel Aviv,Center
+C1085,Segal Pharmacy - Modiin,Independent Pharmacy,Modiin, jerusalem  
+C1086,Ben David Pharmacy - Herzliya,Independent Pharmacy,Herzliya,Sharon
+C1087,Katz Pharmacy - Beer Sheva,Independent Pharmacy,Beer Sheva,South
+C1088,Nachum Pharmacy - Holon,Independent Pharmacy,Holon,Center 
+C1089,Gabay Pharmacy - Rishon LeZion,Independent Pharmacy,Rishon LeZion,Center
+C1090,Ohana Pharmacy - Tiberias,Independent Pharmacy,  tiberias,North
+C1091,Shapiro Pharmacy - Ashkelon,Independent Pharmacy,Ashkelon,South 
+C1092,Segal Pharmacy - Jerusalem,Independent Pharmacy,  jerusalem,Jerusalem
+C1093,Klein Pharmacy - Jerusalem,Independent Pharmacy,Jerusalem,Jerusalem
+C1094,Friedman Pharmacy - Haifa,Independent Pharmacy,Haifa,NORTH
+C1095,Rosen Pharmacy - Petah Tikva,Independent Pharmacy,Petah Tikva,Center 
+C1096,Sasson Pharmacy - Herzliya,Independent Pharmacy,Herzliya,Sharon
+C1097,Nachum Pharmacy - Tel Aviv,Independent Pharmacy,Tel Aviv,Center
+C1098,Biton Pharmacy - Modiin,Independent Pharmacy,Modiin, jerusalem  
+C1099,Nachum Pharmacy - Herzliya,Independent Pharmacy,Herzliya,Sharon
+C1100,Vaknin Pharmacy - Haifa,Independent Pharmacy,Haifa,North
+C1101,Sasson Pharmacy - Tiberias,Independent Pharmacy,Tiberias,North
+C1102,Friedman Pharmacy - Jerusalem,Independent Pharmacy,Jerusalem,Jerusalem
+C1103,Ohana Pharmacy - Holon,Independent Pharmacy,Holon,Center
+C1104,Tal Pharmacy - Holon,Independent Pharmacy,Holon,Center
+C1105,Biton Pharmacy - Petah Tikva,Independent Pharmacy,Petah Tikva,Center
+C1106,Malka Pharmacy - Karmiel,Independent Pharmacy,Karmiel,North
+C1107,Ashkenazi Pharmacy - Raanana,Independent Pharmacy,Raanana,sharon
+C1108,Levi Pharmacy - Haifa,Independent Pharmacy,Haifa,North
+C1109,Elbaz Pharmacy - Tiberias,Independent Pharmacy,Tiberias,North
+C1110,Shapiro Pharmacy - Tel Aviv,Independent Pharmacy,Tel Aviv,Center
+C1111,Mizrahi Pharmacy - Ashkelon,Independent Pharmacy,Ashkelon,South
+C1112,Gabay Pharmacy - Raanana,Independent Pharmacy,Raanana, sharon  
+C1113,Weiss Pharmacy - Ashkelon,Independent Pharmacy,Ashkelon,South
+C1114,Nachum Pharmacy - Ashkelon,Independent Pharmacy,Ashkelon,South
+C1115,Dahan Pharmacy - Tel Aviv,Independent Pharmacy,  tel aviv,CENTER
+C1116,Vaknin Pharmacy - Jerusalem,Independent Pharmacy,Jerusalem,Jerusalem
+C1117,Shapiro Pharmacy - Haifa,Independent Pharmacy,Haifa,North
+C1118,Ohana Pharmacy - Rishon LeZion,Independent Pharmacy,Rishon LeZion,Center
+C1119,Avraham Pharmacy - Jerusalem,Independent Pharmacy,Jerusalem,Jerusalem
+C1120,Shalom Pharmacy - Jerusalem,Independent Pharmacy,  jerusalem,Jerusalem
+C1121,Malka Pharmacy - Rishon LeZion,Independent Pharmacy,Rishon LeZion,Center
+C1122,Haddad Pharmacy - Jerusalem,Independent Pharmacy,Jerusalem,Jerusalem
+C1123,Nachum Pharmacy - Eilat,Independent Pharmacy,Eilat,South
+C1124,Klein Pharmacy - Ashkelon,Independent Pharmacy,Ashkelon,South
+C1125,Avraham Pharmacy - Rehovot,Independent Pharmacy,Rehovot,Center
+C1126,Klein Pharmacy - Tel Aviv,Independent Pharmacy,Tel Aviv,Center
+C1127,Sasson Pharmacy - Ashdod,Independent Pharmacy,Ashdod,South
+C1128,Sasson Pharmacy - Kfar Saba,Independent Pharmacy,  kfar saba,Sharon
+C1129,Rosen Pharmacy - Tiberias,Independent Pharmacy,Tiberias,North
+C1130,Rosen Pharmacy - Rishon LeZion,Independent Pharmacy,Rishon LeZion,Center
+C1131,Vaknin Pharmacy - Netanya,Independent Pharmacy,Netanya,SHARON
+C1132,Golan Pharmacy - Raanana,Independent Pharmacy,Raanana,Sharon
+C1133,Gabay Pharmacy - Tel Aviv,Independent Pharmacy,Tel Aviv,Center
+C1134,Haddad Pharmacy - Haifa,Independent Pharmacy,Haifa,North
+C1135,Vaknin Pharmacy - Beer Sheva,Independent Pharmacy,Beer Sheva,South
+C1136,Klein Pharmacy - Hadera,Independent Pharmacy,Hadera,Sharon
+C1137,Ohana Pharmacy - Karmiel,Independent Pharmacy,Karmiel,North
+C1138,Shapiro Pharmacy - Jerusalem,Independent Pharmacy,Jerusalem,Jerusalem
+C1139,Malka Pharmacy - Petah Tikva,Independent Pharmacy,Petah Tikva, center  
+C1140,Tal Pharmacy - Ashdod,Independent Pharmacy,Ashdod,South

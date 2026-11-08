@@ -246,4 +246,4 @@ GROUP BY is_grace_period;
 
 **Tools:** Python · SQLite · SQL
 
-[← Back to FP&A projects](../README.md)
+[← Back to BI Developer](../README.md)

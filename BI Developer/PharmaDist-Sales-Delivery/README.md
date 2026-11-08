@@ -6,8 +6,6 @@
 ![SQL](https://img.shields.io/badge/SQL-DuckDB-FFF000?logo=duckdb&logoColor=black)
 ![Topic](https://img.shields.io/badge/Topic-Supply%20Chain%20%C2%B7%20Pharma-2E7D32)
 
-![Dashboard](images/dashboard.png)
-
 ---
 
 ## The business question
@@ -59,12 +57,15 @@ Orders run from 01/01/2024 to 30/09/2026 (the ERP extract date).
 | Net sales | ₪54.9M, **+11.6%** vs Jan–Sep 2025 |
 | Gross margin | **26.5%** (24.4% in 2025, 22.1% in 2024) |
 | OTIF (on time and in full) | **73.4%**, against an 80% target |
-| OTIF in the South | **62.7%**; Eilat 43.3% |
+| Orders that failed OTIF | 935 of 3,511: 530 incomplete, 325 late, 80 both |
+| OTIF in the South | **62.7%**; Eilat 44.1% |
 | On-time rate, South vs other regions | 77.4% vs 89.9–92.0% |
 | Orders with antibiotics delivered in full, Nov 2025–Jan 2026 | 42–52% (vs ~95% in other months) |
 | OTIF for HMOs (about half of sales) | 65.5% |
 
-**Recommendation:** sales and margin are healthy, but service is not keeping up. Fix the delivery schedule to the South (especially Eilat), where the problem is late deliveries, and hold extra stock of critical antibiotics before winter.
+**Answer:** sales and margin are healthy, but service is not keeping up, and two different problems hide in one number. Most failed orders arrive **incomplete**: large HMO and hospital orders (8–9 lines each) fail if a single line is short, and antibiotics ran short in Nov–Jan. **Late deliveries** are concentrated in the South, worst in Eilat.
+
+**Recommendation:** hold safety stock of key antibiotics and critical HMO/hospital items before winter, and fix the delivery schedule to the South, especially Eilat.
 
 ## Limitations
 
@@ -100,7 +101,6 @@ The first trend chart used two Y axes with different scales, which made the two 
 | `sql/control_numbers.sql`         | Data-quality profile and control numbers for every KPI        |
 | `data_generator/generate_data.py` | Synthetic data generator (Python, pandas)                     |
 | `teaching/`                       | The project as a lesson: lesson plan, exercise and answer key |
-| `images/dashboard.png`            | Screenshot of the report                                      |
 
 **Tools:** Power BI (Power Query, DAX) · SQL (DuckDB) · Python (pandas). The data generator, SQL checks and teaching materials were developed with GenAI (Claude). The model, measures and report were built and validated in Power BI.
 

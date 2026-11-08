@@ -120,4 +120,4 @@ The dataset belongs to XP Lab and is not redistributed. The notebook ran in XP L
 
 **Challenge:** [XP Lab](https://www.xp-lab.com) — "Much Ado About Baskets"
 
-[← Back to FP&A projects](../README.md)
+[← Back to BI Developer](../README.md)

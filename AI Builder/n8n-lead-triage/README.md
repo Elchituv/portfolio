@@ -29,7 +29,7 @@ These numbers come from [7] test leads that I wrote and labeled before running. 
 - Segment matched my label: **[5]/[7]**
 - Sent to human review: **[14]%**
 - Auto-routed lead, submission to logged row: about **[4] s**
-- Less than 0.1 cents per lead, roughly **$[0.64]** per lead at [Gemini 3.8 Flash] list prices (the demo ran on the free tier)
+- Less than 0.1 cents per lead, roughly **$[0.64]** per lead at [Gemini 3.8 Flash] list prices (the demo ran on the n8n Gateway credits)
 - Forced failure (broke the sheet's match column): the alert email arrived in **[5] s**, with the execution link
 
 ## KPIs I'd track in production
@@ -37,11 +37,11 @@ These numbers come from [7] test leads that I wrote and labeled before running. 
 - Routing accuracy: the share of auto-routed leads that sales didn't re-classify
 - Human-review rate and approval rate, which show whether the 0.7 threshold is right
 - Duplicate records created (target: 0)
-- Failed runs per week, time to fix and cost per lead
+- Failed runs per week, time to fix, and cost per lead
 
 ## Limits, and what changes for production
 - Sheets stands in for the CRM. The same flow maps to Salesforce or HubSpot with an upsert on email, either in n8n or as a Workato recipe.
-- The Gemini free tier is for demo data only. Production would use a paid tier or Vertex AI so customer data stays out of model training.
+- The n8n Gateway credits are for demo data only. Production would use a paid tier or Vertex AI so customer data stays out of model training.
 - The approval request has no timeout. Production needs one, with a default route and an escalation path.
 - Next steps: enrichment (company size, domain lookup) before classification, and about 50 real historical leads labeled to tune the threshold.
 

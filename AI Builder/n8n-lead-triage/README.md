@@ -4,8 +4,6 @@ Inbound B2B leads are classified by an LLM, deduplicated, logged and routed. Whe
 
 n8n 2.x · Google Gemini · Google Sheets · Gmail
 
-[Screenshot 2026-11-23 142545.png]
-
 ## The problem
 A sales inbox gets a mix of real buyers, partners, job seekers and spam. Triage by hand is slow, עצשןbecause a hot lead can wait hours. It is also inconsistent: the same lead gets logged twice, or not at all.
 

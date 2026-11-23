@@ -1,0 +1,729 @@
+{
+  "name": "Lead Triage",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Contact Sales",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full Name"
+            },
+            {
+              "fieldLabel": "Work Email",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Company"
+            },
+            {
+              "fieldLabel": "Country"
+            },
+            {
+              "fieldLabel": "How can we help?",
+              "fieldType": "textarea"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        0,
+        -48
+      ],
+      "id": "873e9333-ff6c-4cee-9855-d41a9a56e0c9",
+      "name": "On form submission",
+      "webhookId": "b53d14b6-7402-47a8-b49e-a44809462bf3"
+    },
+    {
+      "parameters": {
+        "text": "=Company: {{ $json.company }}\nEmail domain: {{ $json.email_domain }}\nCountry: {{ $json.country }}\nMessage: {{ $json.message }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "segment",
+              "description": "One of: operator, media, partner, other, spam. operator = sportsbook or betting operator. media = media, fantasy or sports app. partner = platform, reseller or integrator serving operators. other = job seekers, students, vendors, research."
+            },
+            {
+              "name": "priority",
+              "description": "One of: high, medium, low. high = operator or partner with clear buying intent (pricing, trial, integration, go-live date, volumes). medium = plausible business interest but vague. low = other or spam."
+            },
+            {
+              "name": "confidence",
+              "type": "number",
+              "description": "0 to 1. How sure you are about segment and priority. Below 0.7 if the message is very short, vague or contradictory. Do not guess."
+            },
+            {
+              "name": "summary",
+              "description": "One English sentence for a sales rep: who they are and what they want."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        -48
+      ],
+      "id": "76a590a5-dbce-46cc-af7b-4f11e356a0cd",
+      "name": "Classify",
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.8-flash",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        520,
+        184
+      ],
+      "id": "65732456-2042-4f09-b6ad-85cc99b7c55b",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{ \"output\": { \"segment\": \"unclassified\", \"priority\": \"medium\", \"confidence\": 0,\n  \"summary\": \"AI classification failed - needs manual triage\" } }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        800,
+        32
+      ],
+      "id": "6a2ee30f-a857-4ca2-8d8f-7b89eac8742b",
+      "name": "AI fallback"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5e2e9b84-27f8-4e96-aff3-df2dc17f672b",
+              "name": "=name",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "b5ff1a05-cbea-4ce2-9940-659b2c5d8e8b",
+              "name": "=email",
+              "value": "= {{ $('Normalize').first().json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "104a54bf-7916-451b-831e-3e8d36c3a4d6",
+              "name": "company",
+              "value": "={{ $('Normalize').first().json.company }}",
+              "type": "string"
+            },
+            {
+              "id": "18647643-935b-4e5b-810f-e87e9591b2cd",
+              "name": "country",
+              "value": "= {{ $('Normalize').first().json.country }}",
+              "type": "string"
+            },
+            {
+              "id": "4ef68564-44f6-4dc3-85db-15456bcb9029",
+              "name": "message",
+              "value": "={{ $('Normalize').first().json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "115b14d4-9214-4f1e-8f89-3cac0e3b7c81",
+              "name": "received_at",
+              "value": "={{ $('Normalize').first().json.received_at }}",
+              "type": "string"
+            },
+            {
+              "id": "c4d08bbb-5729-4d7b-a601-3eafdb0ba36c",
+              "name": "segment",
+              "value": "= {{ $json.output.segment }}",
+              "type": "string"
+            },
+            {
+              "id": "9d808b3c-501b-463e-9e7e-a2ab69d50dd0",
+              "name": "=priority",
+              "value": "={{ $json.output.priority }}",
+              "type": "string"
+            },
+            {
+              "id": "17b06728-7e0f-4134-a758-b145838efc62",
+              "name": "confidence",
+              "value": "= {{ $json.output.confidence }}",
+              "type": "number"
+            },
+            {
+              "id": "7f573923-0d41-4e4d-b73e-66ca60c19167",
+              "name": "summary",
+              "value": "={{ $json.output.summary }}\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1024,
+        -48
+      ],
+      "id": "83e471a2-01bc-4f25-8d5f-352370dd08a5",
+      "name": "Build record"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 4
+          },
+          "conditions": [
+            {
+              "id": "a64aa2bc-f1cf-4d24-8bb8-fa48b78a91a8",
+              "leftValue": "={{ $json['confidence'] }}",
+              "rightValue": 0.7,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.4,
+      "position": [
+        1248,
+        -48
+      ],
+      "id": "bbfcb47e-9f3c-4cd0-940d-a4cdac47c510",
+      "name": "Confident?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6eed7fdf-03f1-4317-8170-385020f27c18",
+              "name": "name",
+              "value": "= {{ $json['Full Name'].trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "ce15edc5-055a-47bf-b672-6e1cfb45d4da",
+              "name": "email",
+              "value": "= {{ $json['Work Email'].trim().toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "0f4ae3c5-344e-4b62-bad8-4c35aacee83a",
+              "name": "email_domain",
+              "value": "={{ $json['Work Email'].trim().toLowerCase().split('@')[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "f645814a-0269-4471-be1a-3ac509903943",
+              "name": "company",
+              "value": "={{ $json.Company.trim() }}",
+              "type": "string"
+            },
+            {
+              "id": "92bd9502-8bb2-4e6a-99f2-3fe3f0bd0705",
+              "name": "country",
+              "value": "= {{ $json.Country }}",
+              "type": "string"
+            },
+            {
+              "id": "6c90295d-ea24-419c-98ae-440e515fa0f5",
+              "name": "message",
+              "value": "= {{ $json['How can we help?'] }}",
+              "type": "string"
+            },
+            {
+              "id": "e6b497e2-b0a5-4a35-bab0-79f97446dfa3",
+              "name": "received_at",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        -48
+      ],
+      "id": "89540690-e10c-4f4c-ab81-0511eeaeca21",
+      "name": "Normalize"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "you@gmail.com",
+        "subject": "={{ $json.company }} – {{ $json.segment }} ({{ $json.confidence }})",
+        "message": "=AI suggestion: {{ $json.segment }} / {{ $json.priority }}\nSummary: {{ $json.summary }}\n\nOriginal message:\n{{ $json.message }}\n\nFrom: {{ $json.name }} <{{ $json.email }}>",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1472,
+        48
+      ],
+      "id": "6f0ebb92-f0c4-40d2-938e-79597c59df88",
+      "name": "Send message and wait for response",
+      "webhookId": "923aaafc-6c37-4ee4-8fa3-2a4630e56209",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "2YrrqK8KL6LjysJN",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b6ec93c-43a9-45ad-bb34-5998fbfa385c",
+              "name": "route",
+              "value": "={{ $json.data.approved ? 'human_approved' : 'human_rejected' }}.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1696,
+        48
+      ],
+      "id": "c3e74e28-aaf5-4184-a490-cd1a06384fcc",
+      "name": "Route: human"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ee25b4d8-5caa-40a1-adf0-1dd6c1467879",
+              "name": "auto",
+              "value": "=route",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1696,
+        -144
+      ],
+      "id": "b33f5d9a-a649-4f01-b85a-fcd6634317cd",
+      "name": "Route: auto"
+    },
+    {
+      "parameters": {
+        "sendTo": "Echituv@gmail.com",
+        "subject": "=[{{ $('Build record').first().json.priority }}] New lead: {{ $('Build record').first().json.company }}\n",
+        "message": "={{ $('Build record').first().json.summary }}<br>\n{{ $json['route '] }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2144,
+        -48
+      ],
+      "id": "4901d4b3-c7c0-4075-bc6d-e42ea6c83d3e",
+      "name": "Send a message",
+      "webhookId": "6919903b-8375-41f7-bc02-8e454a84881a",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "2YrrqK8KL6LjysJN",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_gGCIGYRTbHmGqD38eNF8M_tFGXN1_5Z4di661JuVB4/edit?hl=he&gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "גיליון1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_gGCIGYRTbHmGqD38eNF8M_tFGXN1_5Z4di661JuVB4/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "received_at": "={{ $('Build record').first().json.received_at }}",
+            "triaged_at": "={{ $now.toISO() }}",
+            "name ": "={{ $('Build record').first().json.name }}",
+            "company ": "={{ $('Build record').first().json.company }}",
+            "country ": "={{ $('Build record').first().json.country }}",
+            "message ": "={{ $('Build record').first().json.message }}",
+            "segment ": "={{ $('Build record').first().json.segment }}",
+            "priority ": "={{ $('Build record').first().json.priority }}",
+            "confidence ": "={{ $('Build record').first().json.confidence }}",
+            "summary ": "={{ $('Build record').first().json.summary }}",
+            "route ": "={{$json.route}}",
+            "execution_id": "={{ $execution.id }}",
+            "email": "={{ $('Build record').first().json.email }}"
+          },
+          "matchingColumns": [
+            "email"
+          ],
+          "schema": [
+            {
+              "id": "received_at",
+              "displayName": "received_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "triaged_at",
+              "displayName": "triaged_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "name ",
+              "displayName": "name ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company ",
+              "displayName": "company ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "country ",
+              "displayName": "country ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message ",
+              "displayName": "message ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "segment ",
+              "displayName": "segment ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "priority ",
+              "displayName": "priority ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "confidence ",
+              "displayName": "confidence ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "summary ",
+              "displayName": "summary ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "route ",
+              "displayName": "route ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "execution_id",
+              "displayName": "execution_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1920,
+        -48
+      ],
+      "id": "1a3e3f22-6491-4c6e-8611-883e54c2aedc",
+      "name": "Upsert lead",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "cqLugD5tfng6ll0M",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Normalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Classify",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify": {
+      "main": [
+        [
+          {
+            "node": "Build record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI fallback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI fallback": {
+      "main": [
+        [
+          {
+            "node": "Build record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build record": {
+      "main": [
+        [
+          {
+            "node": "Confident?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Confident?": {
+      "main": [
+        [
+          {
+            "node": "Route: auto",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send message and wait for response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize": {
+      "main": [
+        [
+          {
+            "node": "Classify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response": {
+      "main": [
+        [
+          {
+            "node": "Route: human",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: human": {
+      "main": [
+        [
+          {
+            "node": "Upsert lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route: auto": {
+      "main": [
+        [
+          {
+            "node": "Upsert lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upsert lead": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "xcgqguXOCnUmkKNx",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "a9071fe6-155c-4f87-a774-d233c0a033ff",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "410923224f6c26c1c469b1ff192e8d6aa979f9667737e1ebcd4a89034872782d"
+  },
+  "nodeGroups": [],
+  "id": "yt7gVB2KrQCcMujJ",
+  "tags": []
+}

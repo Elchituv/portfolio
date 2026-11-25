@@ -120,12 +120,12 @@
             {
               "id": "5e2e9b84-27f8-4e96-aff3-df2dc17f672b",
               "name": "=name",
-              "value": "=",
+              "value": "={{ $('Normalize').first().json.name }}",
               "type": "string"
             },
             {
               "id": "b5ff1a05-cbea-4ce2-9940-659b2c5d8e8b",
-              "name": "=email",
+              "name": "email",
               "value": "= {{ $('Normalize').first().json.email }}",
               "type": "string"
             },
@@ -161,7 +161,7 @@
             },
             {
               "id": "9d808b3c-501b-463e-9e7e-a2ab69d50dd0",
-              "name": "=priority",
+              "name": "priority",
               "value": "={{ $json.output.priority }}",
               "type": "string"
             },
@@ -231,13 +231,13 @@
             {
               "id": "6eed7fdf-03f1-4317-8170-385020f27c18",
               "name": "name",
-              "value": "= {{ $json['Full Name'].trim() }}",
+              "value": "={{ $json['Full Name'].trim() }}",
               "type": "string"
             },
             {
               "id": "ce15edc5-055a-47bf-b672-6e1cfb45d4da",
               "name": "email",
-              "value": "= {{ $json['Work Email'].trim().toLowerCase() }}",
+              "value": "={{ $json['Work Email'].trim().toLowerCase() }}",
               "type": "string"
             },
             {
@@ -247,21 +247,15 @@
               "type": "string"
             },
             {
-              "id": "f645814a-0269-4471-be1a-3ac509903943",
-              "name": "company",
-              "value": "={{ $json.Company.trim() }}",
-              "type": "string"
-            },
-            {
               "id": "92bd9502-8bb2-4e6a-99f2-3fe3f0bd0705",
               "name": "country",
-              "value": "= {{ $json.Country }}",
+              "value": "={{ $json.Country }}",
               "type": "string"
             },
             {
               "id": "6c90295d-ea24-419c-98ae-440e515fa0f5",
               "name": "message",
-              "value": "= {{ $json['How can we help?'] }}",
+              "value": "={{ $json['How can we help?'] }}",
               "type": "string"
             },
             {
@@ -319,7 +313,7 @@
             {
               "id": "5b6ec93c-43a9-45ad-bb34-5998fbfa385c",
               "name": "route",
-              "value": "={{ $json.data.approved ? 'human_approved' : 'human_rejected' }}.",
+              "value": "={{ $json.data.approved ? 'human_approved' : 'human_rejected' }}",
               "type": "string"
             }
           ]
@@ -341,8 +335,14 @@
           "assignments": [
             {
               "id": "ee25b4d8-5caa-40a1-adf0-1dd6c1467879",
-              "name": "auto",
-              "value": "=route",
+              "name": "route",
+              "value": "auto",
+              "type": "string"
+            },
+            {
+              "id": "da1a520d-18c6-4710-a795-628b740d33d1",
+              "name": "",
+              "value": "",
               "type": "string"
             }
           ]
@@ -360,7 +360,7 @@
     },
     {
       "parameters": {
-        "sendTo": "Echituv@gmail.com",
+        "sendTo": "you@gmail.com",
         "subject": "=[{{ $('Build record').first().json.priority }}] New lead: {{ $('Build record').first().json.company }}\n",
         "message": "={{ $('Build record').first().json.summary }}<br>\n{{ $json['route '] }}",
         "options": {
@@ -403,17 +403,17 @@
           "value": {
             "received_at": "={{ $('Build record').first().json.received_at }}",
             "triaged_at": "={{ $now.toISO() }}",
-            "name ": "={{ $('Build record').first().json.name }}",
-            "company ": "={{ $('Build record').first().json.company }}",
-            "country ": "={{ $('Build record').first().json.country }}",
-            "message ": "={{ $('Build record').first().json.message }}",
-            "segment ": "={{ $('Build record').first().json.segment }}",
-            "priority ": "={{ $('Build record').first().json.priority }}",
-            "confidence ": "={{ $('Build record').first().json.confidence }}",
-            "summary ": "={{ $('Build record').first().json.summary }}",
-            "route ": "={{$json.route}}",
             "execution_id": "={{ $execution.id }}",
-            "email": "={{ $('Build record').first().json.email }}"
+            "email": "={{ $('Build record').first().json.email }}",
+            "country": "={{ $('Build record').first().json.country }}",
+            "name": "={{ $('Build record').first().json.name }}",
+            "company": "={{ $('Build record').first().json.company }}",
+            "message": "={{ $('Build record').first().json.message }}",
+            "segment": "={{ $('Build record').first().json.segment }}",
+            "priority": "={{ $('Build record').first().json.priority }}",
+            "confidence": "={{ $('Build record').first().json.confidence }}",
+            "summary": "={{ $('Build record').first().json.summary }}",
+            "route": "{ $json.route }}"
           },
           "matchingColumns": [
             "email"
@@ -440,14 +440,24 @@
               "removed": false
             },
             {
-              "id": "name ",
-              "displayName": "name ",
+              "id": "name",
+              "displayName": "name",
               "required": false,
               "defaultMatch": false,
               "display": true,
               "type": "string",
               "canBeUsedToMatch": true,
               "removed": false
+            },
+            {
+              "id": "time its take",
+              "displayName": "time its take",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
             },
             {
               "id": "email",
@@ -460,8 +470,8 @@
               "removed": false
             },
             {
-              "id": "company ",
-              "displayName": "company ",
+              "id": "company",
+              "displayName": "company",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -470,8 +480,8 @@
               "removed": false
             },
             {
-              "id": "country ",
-              "displayName": "country ",
+              "id": "country",
+              "displayName": "country",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -480,8 +490,8 @@
               "removed": false
             },
             {
-              "id": "message ",
-              "displayName": "message ",
+              "id": "message",
+              "displayName": "message",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -490,8 +500,8 @@
               "removed": false
             },
             {
-              "id": "segment ",
-              "displayName": "segment ",
+              "id": "segment",
+              "displayName": "segment",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -500,8 +510,8 @@
               "removed": false
             },
             {
-              "id": "priority ",
-              "displayName": "priority ",
+              "id": "priority",
+              "displayName": "priority",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -510,8 +520,8 @@
               "removed": false
             },
             {
-              "id": "confidence ",
-              "displayName": "confidence ",
+              "id": "confidence",
+              "displayName": "confidence",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -520,8 +530,8 @@
               "removed": false
             },
             {
-              "id": "summary ",
-              "displayName": "summary ",
+              "id": "summary",
+              "displayName": "summary",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -530,8 +540,8 @@
               "removed": false
             },
             {
-              "id": "route ",
-              "displayName": "route ",
+              "id": "route",
+              "displayName": "route",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -548,6 +558,16 @@
               "type": "string",
               "canBeUsedToMatch": true,
               "removed": false
+            },
+            {
+              "id": "expectations",
+              "displayName": "expectations",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
             }
           ],
           "attemptToConvertTypes": false,
@@ -718,7 +738,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "availableInMCP": false
   },
-  "versionId": "a9071fe6-155c-4f87-a774-d233c0a033ff",
+  "versionId": "430764b4-787a-41f6-b47a-85439e204380",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "410923224f6c26c1c469b1ff192e8d6aa979f9667737e1ebcd4a89034872782d"
